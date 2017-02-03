@@ -4,7 +4,9 @@ import time
 import random
 from curses import panel
 from collections import deque
+import sys
 
+sys.stdout.write("\x1b]2;Vipers\x07")
 curBoard = curses.initscr()
 curses.cbreak()
 curBoard.keypad(1)
@@ -15,6 +17,7 @@ dimensions = curBoard.getmaxyx()
 snake = deque()
 fruitC = [40,40] 
 random.seed()
+
 def makeBoard():
     #Initializes a deque to hold location of snake dots
     snake.append((32,29))
@@ -70,7 +73,7 @@ def main():
             break
         #Checks if location is a "fruit" or not, if it is spawns a new fruit, does not delete tail
         if curBoard.instr(newHead[0],newHead[1],1)=='@':
-            fruitC=[random.randint(0,dimensions[0]),random.randint(0,dimensions[1])]
+            fruitC=[random.randint(1,dimensions[0]),random.randint(1,dimensions[1])]
             curBoard.addstr(fruitC[0],fruitC[1],'@')
         else:
             #If a fruit has not eaten, the tail dot is removed
@@ -79,7 +82,7 @@ def main():
         #Either way, a new head is appended
         curBoard.addstr(newHead[0],newHead[1],'O')
         snake.append(newHead);
-        time.sleep(0.1)
+        time.sleep(0.15)
     
 main()
 curses.endwin()
