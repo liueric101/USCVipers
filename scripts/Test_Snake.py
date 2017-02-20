@@ -82,7 +82,7 @@ def main():
         #Either way, a new head is appended
         curBoard.addstr(newHead[0],newHead[1],'O')
         snake.append(newHead);
-        time.sleep(0.15)
+        time.sleep(0.3)
     
 main()
 curses.endwin()
